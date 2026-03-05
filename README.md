@@ -85,4 +85,4 @@ Este trabajo se distribuye bajo la licencia **Creative Commons Attribution 4.0 I
 
 ---
 
-*Este proyecto fue desarrollado como un recurso educativo en ciencia de datos por Guillermo en colaboración con Manus AI.*
+*Este proyecto fue desarrollado como un recurso educativo en ciencia de datos por Guillermo - ICTA Ltda.*
