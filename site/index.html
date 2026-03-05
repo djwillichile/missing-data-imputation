@@ -18,13 +18,19 @@
 html{scroll-behavior:smooth;font-size:16px}
 body{font-family:var(--fb);color:var(--tx);background:var(--bg);line-height:1.75}
 .pg{display:flex;min-height:100vh}
-.sb{position:fixed;top:0;left:0;width:var(--sw);height:100vh;overflow-y:auto;background:var(--bg2);border-right:1px solid var(--bd);padding:2rem 1.25rem;z-index:100}
+/* Sidebar */
+.sb{position:fixed;top:0;left:0;width:var(--sw);height:100vh;overflow-y:auto;background:var(--bg2);border-right:1px solid var(--bd);padding:2rem 1.25rem;z-index:200;transition:transform .3s ease}
 .sb-t{font-family:var(--fh);font-size:1rem;font-weight:700;color:var(--pr);margin-bottom:.5rem;line-height:1.4}
 .sb-s{font-size:.75rem;color:var(--mu);margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--bl)}
 .sb nav a{display:block;padding:.4rem .75rem;margin-bottom:.15rem;font-size:.85rem;color:var(--mu);text-decoration:none;border-radius:6px;transition:all .2s;line-height:1.5}
 .sb nav a:hover,.sb nav a.active{color:var(--pr);background:var(--pl)}
 .sb nav a.active{font-weight:600}
 .ns{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--mu);margin-top:1rem;margin-bottom:.25rem;padding-left:.75rem}
+/* Hamburger button */
+.hb{display:none;position:fixed;top:1rem;left:1rem;z-index:300;background:var(--pr);color:#fff;border:none;border-radius:8px;width:44px;height:44px;cursor:pointer;font-size:1.5rem;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.2);line-height:1}
+/* Overlay */
+.ov{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.4);z-index:150}
+/* Main content */
 .mn{margin-left:var(--sw);flex:1;padding:3rem 2.5rem}
 .wr{max-width:var(--mw);margin:0 auto}
 .dh{margin-bottom:3rem;padding-bottom:2rem;border-bottom:2px solid var(--bd)}
@@ -37,32 +43,75 @@ p{margin-bottom:1.25rem}
 strong{font-weight:600}
 a{color:var(--pr);text-decoration:none}
 a:hover{text-decoration:underline}
-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.9rem}
+/* Tables responsive wrapper */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1.5rem 0}
+table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:500px}
 thead{background:var(--bg2)}
-th{font-weight:600;text-align:left;padding:.75rem 1rem;border-bottom:2px solid var(--bd)}
+th{font-weight:600;text-align:left;padding:.75rem 1rem;border-bottom:2px solid var(--bd);white-space:nowrap}
 td{padding:.65rem 1rem;border-bottom:1px solid var(--bl);vertical-align:top}
 tr:hover td{background:var(--bg2)}
-pre{background:var(--bgc);border:1px solid var(--bl);border-radius:8px;padding:1.25rem 1.5rem;overflow-x:auto;margin:1.5rem 0;font-size:.85rem;line-height:1.6}
-pre code{font-family:var(--fc);background:none;padding:0;border:none}
-code{font-family:var(--fc);font-size:.88em;background:var(--bgc);padding:.15em .4em;border-radius:4px;border:1px solid var(--bl)}
+/* Code blocks */
+pre{background:var(--bgc);border:1px solid var(--bl);border-radius:8px;padding:1.25rem 1.5rem;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1.5rem 0;font-size:.85rem;line-height:1.6}
+pre code{font-family:var(--fc);background:none;padding:0;border:none;white-space:pre}
+code{font-family:var(--fc);font-size:.88em;background:var(--bgc);padding:.15em .4em;border-radius:4px;border:1px solid var(--bl);word-break:break-word}
+/* Figures */
 .fig{margin:2rem 0;text-align:center}
 .fig img{max-width:100%;height:auto;border-radius:8px;border:1px solid var(--bl);box-shadow:0 2px 8px rgba(0,0,0,.06)}
 .fig figcaption{margin-top:.75rem;font-size:.85rem;color:var(--mu);font-style:italic;max-width:90%;margin-left:auto;margin-right:auto;line-height:1.5}
 ol,ul{margin:1rem 0;padding-left:1.75rem}
 li{margin-bottom:.5rem}
-.katex-display{margin:1.5rem 0;overflow-x:auto}
+/* KaTeX */
+.katex-display{margin:1.5rem 0;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:.5rem 0}
+/* References */
 .rl{list-style:none;padding-left:0}
 .rl li{padding:.75rem 0;border-bottom:1px solid var(--bl);font-size:.92rem}
 .rl li:last-child{border-bottom:none}
 .rn{display:inline-block;width:1.75rem;font-weight:700;color:var(--pr)}
+/* Footer */
 .df{margin-top:4rem;padding-top:2rem;border-top:1px solid var(--bd);font-size:.85rem;color:var(--mu);text-align:center}
-.btt{position:fixed;bottom:2rem;right:2rem;width:40px;height:40px;background:var(--pr);color:#fff;border:none;border-radius:50%;cursor:pointer;font-size:1.1rem;display:none;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.15);z-index:50}
+/* Back to top */
+.btt{position:fixed;bottom:2rem;right:2rem;width:44px;height:44px;background:var(--pr);color:#fff;border:none;border-radius:50%;cursor:pointer;font-size:1.2rem;display:none;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.15);z-index:50}
 .btt.v{display:flex}
-@media(max-width:900px){.sb{display:none}.mn{margin-left:0;padding:2rem 1.25rem}}
+/* ===== RESPONSIVE: Tablet ===== */
+@media(max-width:1024px){
+  .mn{padding:2.5rem 2rem}
+}
+/* ===== RESPONSIVE: Mobile ===== */
+@media(max-width:768px){
+  .sb{transform:translateX(-100%)}
+  .sb.open{transform:translateX(0)}
+  .hb{display:flex}
+  .ov.open{display:block}
+  .mn{margin-left:0;padding:4.5rem 1rem 2rem 1rem}
+  .dh h1{font-size:1.5rem}
+  .dh .st{font-size:.95rem}
+  h2{font-size:1.3rem;margin-top:2.5rem}
+  h3{font-size:1.1rem;margin-top:1.5rem}
+  p{margin-bottom:1rem;font-size:.95rem}
+  pre{padding:.75rem 1rem;font-size:.78rem;border-radius:6px}
+  .fig img{border-radius:6px}
+  .fig figcaption{font-size:.8rem;max-width:100%}
+  .dm{flex-direction:column;gap:.5rem}
+  table{font-size:.82rem;min-width:400px}
+  th,td{padding:.5rem .65rem}
+}
+/* ===== RESPONSIVE: Small Mobile ===== */
+@media(max-width:480px){
+  .mn{padding:4rem .75rem 1.5rem .75rem}
+  .dh h1{font-size:1.3rem}
+  h2{font-size:1.15rem}
+  h3{font-size:1rem}
+  pre{padding:.6rem .75rem;font-size:.72rem}
+  table{min-width:320px}
+}
 </style>
 </head>
 <body>
-<aside class="sb">
+<!-- Hamburger button for mobile -->
+<button class="hb" id="hb" aria-label="Abrir men&#250; de navegaci&#243;n" onclick="toggleMenu()">&#9776;</button>
+<!-- Overlay for mobile sidebar -->
+<div class="ov" id="ov" onclick="toggleMenu()"></div>
+<aside class="sb" id="sb">
 <div class="sb-t">Datos Faltantes y M&#233;todos de Imputaci&#243;n</div>
 <div class="sb-s">Gu&#237;a T&#233;cnica &middot; Ciencia de Datos</div>
 <nav>
@@ -101,14 +150,14 @@ li{margin-bottom:.5rem}
 <p>Independientemente de su origen, los datos faltantes representan un desaf&#237;o significativo para el modelado estad&#237;stico y el aprendizaje autom&#225;tico. Si no se manejan adecuadamente, pueden conducir a conclusiones sesgadas, modelos predictivos con menor rendimiento y una reducci&#243;n general en la validez de los resultados.</p>
 <h3>1.1 Categor&#237;as de Datos Faltantes</h3>
 <p>Little y Rubin (2002) <sup>[1]</sup> propusieron una taxonom&#237;a que se ha convertido en el est&#225;ndar de referencia:</p>
-<table>
+<div class="tw"><table>
 <thead><tr><th>Categor&#237;a</th><th>Nombre Completo</th><th>Descripci&#243;n</th><th>Ejemplo</th></tr></thead>
 <tbody>
 <tr><td><strong>MCAR</strong></td><td>Missing Completely At Random</td><td>La probabilidad de que un dato falte es la misma para todas las observaciones y no depende de ning&#250;n valor.</td><td>Un sensor falla aleatoriamente por un problema el&#233;ctrico.</td></tr>
 <tr><td><strong>MAR</strong></td><td>Missing At Random</td><td>La probabilidad de ausencia depende de los valores observados de otras variables, pero no del valor faltante.</td><td>Los hombres son menos propensos a responder una pregunta sobre salud.</td></tr>
 <tr><td><strong>MNAR</strong></td><td>Missing Not At Random</td><td>La probabilidad de ausencia depende del propio valor que falta.</td><td>Personas con ingresos altos son m&#225;s reacias a revelar sus ingresos.</td></tr>
 </tbody>
-</table>
+</table></div>
 <p>La distinci&#243;n entre estas categor&#237;as es crucial porque determina qu&#233; m&#233;todos de tratamiento son apropiados. Los datos MCAR son los m&#225;s sencillos de manejar. Los datos MAR pueden tratarse con m&#233;todos de imputaci&#243;n que consideren las relaciones entre variables. Los datos MNAR son los m&#225;s problem&#225;ticos, ya que requieren modelos expl&#237;citos del mecanismo de ausencia <sup>[3]</sup>.</p>
 </section>
 
@@ -135,14 +184,14 @@ li{margin-bottom:.5rem}
 <h3>3.2 Eliminaci&#243;n de Columnas</h3>
 <p>Consiste en eliminar por completo una variable si contiene una proporci&#243;n muy alta de valores faltantes (por ejemplo, m&#225;s del 50%).</p>
 <h3>3.3 Problemas Asociados a la Eliminaci&#243;n</h3>
-<table>
+<div class="tw"><table>
 <thead><tr><th>Problema</th><th>Descripci&#243;n</th><th>Consecuencia</th></tr></thead>
 <tbody>
 <tr><td><strong>P&#233;rdida de informaci&#243;n</strong></td><td>Se descartan datos v&#225;lidos de otras columnas en la fila eliminada.</td><td>Reducci&#243;n de la riqueza informativa del dataset.</td></tr>
 <tr><td><strong>Reducci&#243;n del tama&#241;o de muestra</strong></td><td>El dataset resultante es m&#225;s peque&#241;o.</td><td>Menor poder estad&#237;stico para detectar efectos reales.</td></tr>
 <tr><td><strong>Sesgos estad&#237;sticos</strong></td><td>Si los datos no son MCAR, la muestra restante no es representativa.</td><td>Estimaciones distorsionadas de par&#225;metros y relaciones.</td></tr>
 </tbody>
-</table>
+</table></div>
 </section>
 
 <!-- S4 -->
@@ -157,14 +206,14 @@ li{margin-bottom:.5rem}
 <h3>4.3 Imputaci&#243;n por la Moda</h3>
 <p>Reemplaza los valores faltantes por la <strong>moda</strong> (valor m&#225;s frecuente). Es el m&#233;todo de elecci&#243;n para variables categ&#243;ricas.</p>
 <h3>4.4 Problemas de la Imputaci&#243;n Simple</h3>
-<table>
+<div class="tw"><table>
 <thead><tr><th>Problema</th><th>Descripci&#243;n</th><th>Impacto</th></tr></thead>
 <tbody>
 <tr><td><strong>Distorsi&#243;n de la distribuci&#243;n</strong></td><td>Se introduce un pico artificial en el valor central.</td><td>La forma de la distribuci&#243;n original se altera significativamente.</td></tr>
 <tr><td><strong>Reducci&#243;n de la varianza</strong></td><td>Los valores imputados no aportan variabilidad.</td><td>La varianza se subestima, produciendo intervalos de confianza estrechos.</td></tr>
 <tr><td><strong>Sobre-representaci&#243;n</strong></td><td>Un &#250;nico valor se repite muchas veces.</td><td>Se distorsionan las frecuencias y se debilitan las correlaciones.</td></tr>
 </tbody>
-</table>
+</table></div>
 </section>
 
 <!-- S5 -->
@@ -213,7 +262,7 @@ plt.show()</code></pre>
 </figure>
 
 <h3>5.4 Estad&#237;sticas Comparativas</h3>
-<table>
+<div class="tw"><table>
 <thead><tr><th>M&#233;trica</th><th style="text-align:right">Original</th><th style="text-align:right">Eliminaci&#243;n</th><th style="text-align:right">Imputaci&#243;n por Media</th></tr></thead>
 <tbody>
 <tr><td><strong>N</strong></td><td style="text-align:right">1000</td><td style="text-align:right">700</td><td style="text-align:right">1000</td></tr>
@@ -221,7 +270,7 @@ plt.show()</code></pre>
 <tr><td><strong>Desv. Est&#225;ndar</strong></td><td style="text-align:right">9.79</td><td style="text-align:right">9.78</td><td style="text-align:right">8.18</td></tr>
 <tr><td><strong>Varianza</strong></td><td style="text-align:right">95.79</td><td style="text-align:right">95.72</td><td style="text-align:right">66.98</td></tr>
 </tbody>
-</table>
+</table></div>
 </section>
 
 <!-- S6 -->
@@ -302,7 +351,7 @@ print(df_imputed.describe())</code></pre>
 </figure>
 
 <h3>7.7 Ventajas y Limitaciones del M&#233;todo KNN</h3>
-<table>
+<div class="tw"><table>
 <thead><tr><th>Aspecto</th><th>Ventajas</th><th>Limitaciones</th></tr></thead>
 <tbody>
 <tr><td><strong>Relaciones entre variables</strong></td><td>Utiliza informaci&#243;n multivariada para la imputaci&#243;n.</td><td>Requiere relaciones significativas entre variables.</td></tr>
@@ -310,7 +359,7 @@ print(df_imputed.describe())</code></pre>
 <tr><td><strong>Precisi&#243;n</strong></td><td>Generalmente m&#225;s preciso que la imputaci&#243;n simple.</td><td>Puede ser impreciso en alta dimensionalidad.</td></tr>
 <tr><td><strong>Computaci&#243;n</strong></td><td>Implementaci&#243;n directa con scikit-learn.</td><td>Computacionalmente costoso en datasets grandes.</td></tr>
 </tbody>
-</table>
+</table></div>
 </section>
 
 <!-- S8 -->
@@ -319,14 +368,14 @@ print(df_imputed.describe())</code></pre>
 <p>El manejo de datos faltantes es una etapa ineludible y cr&#237;tica en cualquier proyecto de ciencia de datos. La elecci&#243;n del m&#233;todo puede tener un impacto profundo en la validez, precisi&#243;n y fiabilidad de los resultados.</p>
 <p>Los <strong>m&#233;todos simples</strong> (eliminaci&#243;n o imputaci&#243;n por la media) son f&#225;ciles de implementar pero conllevan riesgos: p&#233;rdida de informaci&#243;n, sesgos, distorsi&#243;n de la distribuci&#243;n y reducci&#243;n artificial de la varianza.</p>
 <p>Los <strong>m&#233;todos avanzados</strong> como <strong>KNN</strong> ofrecen una soluci&#243;n m&#225;s robusta al aprovechar la estructura multivariada de los datos, proporcionando estimaciones m&#225;s plausibles que preservan mejor las caracter&#237;sticas del conjunto de datos original.</p>
-<table>
+<div class="tw"><table>
 <thead><tr><th>M&#233;todo</th><th>Tipo</th><th style="text-align:center">Preserva Distribuci&#243;n</th><th style="text-align:center">Preserva Varianza</th><th style="text-align:center">Considera Relaciones</th><th style="text-align:center">Costo Computacional</th></tr></thead>
 <tbody>
 <tr><td>Eliminaci&#243;n</td><td>Eliminaci&#243;n</td><td style="text-align:center">Parcialmente</td><td style="text-align:center">S&#237;</td><td style="text-align:center">No</td><td style="text-align:center">Bajo</td></tr>
 <tr><td>Media/Mediana/Moda</td><td>Imputaci&#243;n Simple</td><td style="text-align:center">No</td><td style="text-align:center">No</td><td style="text-align:center">No</td><td style="text-align:center">Bajo</td></tr>
 <tr><td>KNN</td><td>Imputaci&#243;n Avanzada</td><td style="text-align:center">S&#237;</td><td style="text-align:center">Parcialmente</td><td style="text-align:center">S&#237;</td><td style="text-align:center">Alto</td></tr>
 </tbody>
-</table>
+</table></div>
 <p>La elecci&#243;n final debe basarse en una comprensi&#243;n profunda del conjunto de datos, el mecanismo de ausencia y los objetivos del an&#225;lisis. No existe una soluci&#243;n universal, pero una regla general es preferir los m&#233;todos de imputaci&#243;n sobre la eliminaci&#243;n, y los m&#233;todos avanzados sobre los simples.</p>
 </section>
 
@@ -351,9 +400,29 @@ print(df_imputed.describe())</code></pre>
 
 <button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">&uarr;</button>
 <script>
+// Back to top button
 window.addEventListener('scroll',()=>{document.getElementById('btt').classList.toggle('v',window.scrollY>400)});
+// Active section tracking
 const ss=document.querySelectorAll('section[id]'),nl=document.querySelectorAll('.sb nav a');
 window.addEventListener('scroll',()=>{let c='';ss.forEach(s=>{if(window.scrollY>=s.offsetTop-100)c=s.getAttribute('id')});nl.forEach(l=>{l.classList.remove('active');if(l.getAttribute('href')==='#'+c)l.classList.add('active')});});
+// Mobile menu toggle
+function toggleMenu(){
+  const sb=document.getElementById('sb');
+  const ov=document.getElementById('ov');
+  sb.classList.toggle('open');
+  ov.classList.toggle('open');
+}
+// Close sidebar when clicking a nav link on mobile
+document.querySelectorAll('.sb nav a').forEach(a=>{
+  a.addEventListener('click',()=>{
+    if(window.innerWidth<=768){
+      const sb=document.getElementById('sb');
+      const ov=document.getElementById('ov');
+      sb.classList.remove('open');
+      ov.classList.remove('open');
+    }
+  });
+});
 </script>
 </body>
 </html>
