@@ -39,9 +39,9 @@ html = f'''<!DOCTYPE html>
 <style>
 :root{{--bg:#fff;--bg2:#f8f9fa;--bgc:#f1f3f5;--tx:#212529;--mu:#6c757d;--pr:#2563eb;--pl:#dbeafe;--bd:#dee2e6;--bl:#e9ecef;--fb:'Inter',sans-serif;--fh:'Merriweather',serif;--fc:'JetBrains Mono',monospace;--mw:860px;--sw:280px}}
 *{{margin:0;padding:0;box-sizing:border-box}}
-html{{scroll-behavior:smooth;font-size:16px}}
-body{{font-family:var(--fb);color:var(--tx);background:var(--bg);line-height:1.75}}
-.pg{{display:flex;min-height:100vh}}
+html{{scroll-behavior:smooth;font-size:16px;overflow-x:hidden}}
+body{{font-family:var(--fb);color:var(--tx);background:var(--bg);line-height:1.75;overflow-x:hidden;width:100%;max-width:100vw}}
+.pg{{display:flex;min-height:100vh;overflow-x:hidden;max-width:100vw}}
 /* Sidebar */
 .sb{{position:fixed;top:0;left:0;width:var(--sw);height:100vh;overflow-y:auto;background:var(--bg2);border-right:1px solid var(--bd);padding:2rem 1.25rem;z-index:200;transition:transform .3s ease}}
 .sb-t{{font-family:var(--fh);font-size:1rem;font-weight:700;color:var(--pr);margin-bottom:.5rem;line-height:1.4}}
@@ -55,27 +55,27 @@ body{{font-family:var(--fb);color:var(--tx);background:var(--bg);line-height:1.7
 /* Overlay */
 .ov{{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.4);z-index:150}}
 /* Main content */
-.mn{{margin-left:var(--sw);flex:1;padding:3rem 2.5rem}}
-.wr{{max-width:var(--mw);margin:0 auto}}
+.mn{{margin-left:var(--sw);flex:1;padding:3rem 2.5rem;min-width:0;overflow-x:hidden}}
+.wr{{max-width:var(--mw);width:100%;margin:0 auto;overflow-wrap:break-word;word-wrap:break-word}}
 .dh{{margin-bottom:3rem;padding-bottom:2rem;border-bottom:2px solid var(--bd)}}
-.dh h1{{font-family:var(--fh);font-size:2.25rem;font-weight:700;line-height:1.3;margin-bottom:.75rem}}
+.dh h1{{font-family:var(--fh);font-size:2.25rem;font-weight:700;line-height:1.3;margin-bottom:.75rem;overflow-wrap:break-word;word-wrap:break-word}}
 .dh .st{{font-size:1.1rem;color:var(--mu);font-style:italic;margin-bottom:1rem}}
 .dm{{display:flex;gap:1.5rem;font-size:.85rem;color:var(--mu);flex-wrap:wrap}}
-h2{{font-family:var(--fh);font-size:1.65rem;font-weight:700;margin-top:3.5rem;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--bl)}}
+h2{{font-family:var(--fh);font-size:1.65rem;font-weight:700;margin-top:3.5rem;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--bl);overflow-wrap:break-word;word-wrap:break-word}}
 h3{{font-family:var(--fh);font-size:1.25rem;font-weight:700;margin-top:2rem;margin-bottom:.75rem}}
-p{{margin-bottom:1.25rem}}
+p{{margin-bottom:1.25rem;overflow-wrap:break-word;word-wrap:break-word}}
 strong{{font-weight:600}}
 a{{color:var(--pr);text-decoration:none}}
 a:hover{{text-decoration:underline}}
 /* Tables responsive wrapper */
 .tw{{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1.5rem 0}}
-table{{width:100%;border-collapse:collapse;font-size:.9rem;min-width:500px}}
+table{{width:100%;border-collapse:collapse;font-size:.9rem}}
 thead{{background:var(--bg2)}}
 th{{font-weight:600;text-align:left;padding:.75rem 1rem;border-bottom:2px solid var(--bd);white-space:nowrap}}
 td{{padding:.65rem 1rem;border-bottom:1px solid var(--bl);vertical-align:top}}
 tr:hover td{{background:var(--bg2)}}
 /* Code blocks */
-pre{{background:var(--bgc);border:1px solid var(--bl);border-radius:8px;padding:1.25rem 1.5rem;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1.5rem 0;font-size:.85rem;line-height:1.6}}
+pre{{background:var(--bgc);border:1px solid var(--bl);border-radius:8px;padding:1.25rem 1.5rem;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1.5rem 0;font-size:.85rem;line-height:1.6;max-width:100%}}
 pre code{{font-family:var(--fc);background:none;padding:0;border:none;white-space:pre}}
 code{{font-family:var(--fc);font-size:.88em;background:var(--bgc);padding:.15em .4em;border-radius:4px;border:1px solid var(--bl);word-break:break-word}}
 /* Figures */
@@ -85,7 +85,7 @@ code{{font-family:var(--fc);font-size:.88em;background:var(--bgc);padding:.15em 
 ol,ul{{margin:1rem 0;padding-left:1.75rem}}
 li{{margin-bottom:.5rem}}
 /* KaTeX */
-.katex-display{{margin:1.5rem 0;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:.5rem 0}}
+.katex-display{{margin:1.5rem 0;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:.5rem 0;max-width:100%}}
 /* References */
 .rl{{list-style:none;padding-left:0}}
 .rl li{{padding:.75rem 0;border-bottom:1px solid var(--bl);font-size:.92rem}}
@@ -106,7 +106,7 @@ li{{margin-bottom:.5rem}}
   .sb.open{{transform:translateX(0)}}
   .hb{{display:flex}}
   .ov.open{{display:block}}
-  .mn{{margin-left:0;padding:4.5rem 1rem 2rem 1rem}}
+  .mn{{margin-left:0;padding:4.5rem 1rem 2rem 1rem;max-width:100vw;overflow-x:hidden}}
   .dh h1{{font-size:1.5rem}}
   .dh .st{{font-size:.95rem}}
   h2{{font-size:1.3rem;margin-top:2.5rem}}
@@ -116,7 +116,7 @@ li{{margin-bottom:.5rem}}
   .fig img{{border-radius:6px}}
   .fig figcaption{{font-size:.8rem;max-width:100%}}
   .dm{{flex-direction:column;gap:.5rem}}
-  table{{font-size:.82rem;min-width:400px}}
+  table{{font-size:.82rem}}
   th,td{{padding:.5rem .65rem}}
 }}
 /* ===== RESPONSIVE: Small Mobile ===== */
@@ -126,7 +126,7 @@ li{{margin-bottom:.5rem}}
   h2{{font-size:1.15rem}}
   h3{{font-size:1rem}}
   pre{{padding:.6rem .75rem;font-size:.72rem}}
-  table{{min-width:320px}}
+  table{{font-size:.78rem}}
 }}
 </style>
 </head>
