@@ -1,0 +1,18 @@
+flowchart TD
+    A["Dataset con Valores Faltantes"] --> B{"Evaluar Proporción\nde Datos Faltantes"}
+    B -->|"< 5% y MCAR"| C["Eliminación de Filas\n(Listwise Deletion)"]
+    B -->|"> 50% en una columna"| D["Eliminación de Columnas"]
+    B -->|"Proporción moderada"| E{"Seleccionar Método\nde Imputación"}
+    E --> F["Imputación Simple\n(Media / Mediana / Moda)"]
+    E --> G["Imputación Avanzada\n(KNN / MICE / Regresión)"]
+    F --> H{"Evaluar Impacto\nen la Distribución"}
+    G --> H
+    C --> I["Dataset Completo\n(sin NA)"]
+    D --> I
+    H -->|"Distribución preservada"| I
+    H -->|"Distribución distorsionada"| E
+
+    style A fill:#e74c3c,stroke:#c0392b,color:#fff
+    style I fill:#27ae60,stroke:#1e8449,color:#fff
+    style F fill:#f39c12,stroke:#e67e22,color:#fff
+    style G fill:#3498db,stroke:#2980b9,color:#fff
